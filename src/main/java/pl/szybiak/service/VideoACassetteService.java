@@ -1,4 +1,4 @@
-package pl.szybiak;
+package pl.szybiak.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

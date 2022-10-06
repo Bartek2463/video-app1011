@@ -3,7 +3,7 @@ package pl.szybiak.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.szybiak.model.VideoCassette;
-import pl.szybiak.VideoACassetteService;
+import pl.szybiak.service.VideoACassetteService;
 
 import java.util.List;
 
