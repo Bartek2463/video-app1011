@@ -3,9 +3,9 @@ package pl.szybiak.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.szybiak.model.VideoCassette;
-import pl.szybiak.service.VideoACassetteService;
+import pl.szybiak.VideoACassetteService;
 
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -16,11 +16,11 @@ public class VideoCassetteApi {
 
 
     @GetMapping("/all")
-    public Iterable<VideoCassette>  getAll(){
+    public List<VideoCassette> getAll(){
         return videoCassettes.findAll();
     }
     @GetMapping
-    public Optional<VideoCassette> getByid(@RequestParam Long index){
+    public VideoCassette getByid(@RequestParam Long index){
         return videoCassettes.findById(index);
     }
     @PostMapping

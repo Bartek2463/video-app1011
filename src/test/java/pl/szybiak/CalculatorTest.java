@@ -35,7 +35,7 @@ public class CalculatorTest {
     @Test(expected = ArithmeticException.class)
       public void should_no_divide_by_zero(){
         Calculator calculator = new Calculator();
-        Assert.assertNotEquals(calculator.divide(10,0),10);
+        Assert.assertEquals(calculator.divide(10,0),10,0);
     }
 
 }
