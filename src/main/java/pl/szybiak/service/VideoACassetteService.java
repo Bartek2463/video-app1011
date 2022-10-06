@@ -8,7 +8,7 @@ import pl.szybiak.model.VideoCassette;
 import pl.szybiak.repository.VideoAssettsRepository;
 
 import java.time.LocalDate;
-import java.util.Optional;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -17,10 +17,10 @@ public class VideoACassetteService {
     private VideoAssettsRepository videoAssettsRepository;
 
 
-    public Optional<VideoCassette> findById(Long id){
-        return videoAssettsRepository.findById(id);
+    public VideoCassette findById(Long id){
+        return videoAssettsRepository.findById(id).orElse(null);
     }
-    public Iterable<VideoCassette> findAll(){
+    public List<VideoCassette> findAll(){
         return videoAssettsRepository.findAll();
     }
     public VideoCassette save(VideoCassette videoCassette){
@@ -29,9 +29,5 @@ public class VideoACassetteService {
     public void deleteById(Long id){
         videoAssettsRepository.deleteById(id);
     }
-    @EventListener(ApplicationReadyEvent.class)
-    public  void fillDB(){
-        save(new VideoCassette(1L, "Impossible", LocalDate.of(1993, 1, 2)));
-        save(new VideoCassette(2L, "Rambo", LocalDate.of(1998, 3, 4)));
-    }
+
 }
