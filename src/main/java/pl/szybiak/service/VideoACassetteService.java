@@ -1,6 +1,7 @@
 package pl.szybiak.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.szybiak.model.VideoCassette;
 import pl.szybiak.repository.VideoAssettsRepository;
@@ -10,8 +11,9 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class VideoACassetteService {
 
+public class VideoACassetteService {
+    @Autowired
     private VideoAssettsRepository videoAssettsRepository;
 
 
@@ -26,7 +28,7 @@ public class VideoACassetteService {
     public VideoCassette save(VideoCassette videoCassette) {
         if (videoCassette.getTitle().isBlank() || videoCassette.getTitle() == null) {
             throw new IllegalArgumentException("Title can not by Blank");
-        }else if(videoCassette.getProductionYear()==null){
+        } else if (videoCassette.getProductionYear() == null) {
             throw new IllegalArgumentException("Data production Year can not by null and should by format Data YYYY-MM-dd ");
         }
         return videoAssettsRepository.save(videoCassette);

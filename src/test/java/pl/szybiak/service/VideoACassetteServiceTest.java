@@ -17,8 +17,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class VideoACassetteServiceTest {
-    private static final VideoCassette modelVideo = new VideoCassette(4l, "Rambo", LocalDate.of(1994, 04, 04));
-
     @Test
     public void getVideo_cassets_List() {
         //given
@@ -33,6 +31,7 @@ class VideoACassetteServiceTest {
     //BDD
     @Test
     public void should_getVideo_cassets_list_withBDD() {
+        System.out.println();
         //given
         VideoACassetteService videoACassetteService = mock(VideoACassetteService.class);
         given(videoACassetteService.findAll()).willReturn(prepreMockDate());
