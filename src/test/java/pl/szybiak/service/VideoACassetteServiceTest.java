@@ -2,6 +2,7 @@ package pl.szybiak.service;
 
 import org.hamcrest.Matchers;
 import org.junit.Assert;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import pl.szybiak.model.VideoCassette;
@@ -9,11 +10,8 @@ import pl.szybiak.model.VideoCassette;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -69,7 +67,7 @@ class VideoACassetteServiceTest {
 
     }
 
-    @Test
+    @Test()
     public void should_bad_data_not_save() {
         //given
         VideoACassetteService videoACassetteService = mock(VideoACassetteService.class);
@@ -90,11 +88,18 @@ class VideoACassetteServiceTest {
     void should_get_findById() {
         //given
         VideoACassetteService videoACassetteService = mock(VideoACassetteService.class);
-        given(videoACassetteService.findById(Mockito.any(Long.class))).willReturn(new VideoCassette(1l, "Rambo", LocalDate.of(1992, 3, 4)));
+        given(videoACassetteService.findById(Mockito.any(Long.class))).willReturn(new VideoCassette(2l, "Rambo", LocalDate.of(1992, 3, 4)));
 
         //when
         VideoCassette videoCassette = videoACassetteService.findById(1l);
         assertThat(videoCassette.getId()).isNotNull();
+        assertThat(videoCassette.getTitle()).isNotNull();
+        assertThat(videoCassette.getProductionYear()).isNotNull();
+        Assert.assertEquals(videoCassette.getId().longValue(),2l);
+        Assert.assertEquals(videoCassette.getTitle(),"Rambo");
+        Assert.assertEquals(videoCassette.getProductionYear(),LocalDate.of(1992,3,4));
+
+
 
     }
 }
