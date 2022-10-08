@@ -22,7 +22,7 @@ public class VideoACassetteService {
     }
 
     public List<VideoCassette> findAll() {
-        return videoAssettsRepository.findAll();
+        return (List<VideoCassette>) videoAssettsRepository.findAll();
     }
 
     public VideoCassette save(VideoCassette videoCassette) {
