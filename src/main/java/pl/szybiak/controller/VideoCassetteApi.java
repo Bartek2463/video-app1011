@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import pl.szybiak.model.VideoCassette;
 import pl.szybiak.service.VideoACassetteService;
 
-import java.util.Optional;
-
 @RestController
 @AllArgsConstructor
 @RequestMapping("/cassetts")
@@ -24,7 +22,7 @@ public class VideoCassetteApi {
         return videoCassettes.findAll();
     }
     @GetMapping
-    public Optional<VideoCassette> getByid(@RequestParam Long index){
+    public VideoCassette getByid(@RequestParam Long index){
         return videoCassettes.findById(index);
     }
     @PostMapping
