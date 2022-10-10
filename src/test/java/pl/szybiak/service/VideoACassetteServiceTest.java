@@ -2,6 +2,7 @@ package pl.szybiak.service;
 
 import org.assertj.core.api.Assertions;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,6 +26,7 @@ import static org.mockito.ArgumentMatchers.anyLong;
 class VideoACassetteServiceTest {
 
     private static final VideoCassette VIDEO_CASETTE = new VideoCassette(3l,"Rambo", LocalDate.of(1993,3,4));
+    private static final VideoCassette VIDEO_CASETTE2 = new VideoCassette(3l,"Rambo", LocalDate.of(1993,3,4));
 
     @Mock
     private VideoAssettsRepository videoAssettsRepository;
@@ -46,18 +48,22 @@ class VideoACassetteServiceTest {
 
     @Test
     void findAll() {
-        Mockito.when(videoACassetteService.findAll()).thenReturn(videoCassetteList());
+        Mockito.when(videoAssettsRepository.findAll()).thenReturn(videoCassetteList());
 
         Assertions.assertThat(videoACassetteService.findAll()).hasSize(2);
     }
 
     @Test
-    void save() {
-        Mockito.when(videoACassetteService.save(any(VideoCassette.class))).thenReturn(VIDEO_CASETTE);
+    @DisplayName("Should add Videocassette")
+    void should_Add_VideoCassette() {
+        Mockito.when(videoAssettsRepository.save(any(VideoCassette.class))).thenReturn(VIDEO_CASETTE);
         VideoCassette save = videoACassetteService.save(new VideoCassette());
         assertEquals(save.getId(),3l);
         assertEquals(save.getTitle(),"Rambo");
         assertEquals(save.getProductionYear(),LocalDate.of(1993,3,4));
+        Assertions.assertThat(save).isEqualTo(VIDEO_CASETTE);
+
+
 
     }
 
