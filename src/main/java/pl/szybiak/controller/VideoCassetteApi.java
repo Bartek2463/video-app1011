@@ -15,14 +15,10 @@ public class VideoCassetteApi {
 
     @GetMapping("/all")
     public Iterable<VideoCassette>  getAll(){
-
-
-
-
         return videoCassettes.findAll();
     }
-    @GetMapping
-    public VideoCassette getByid(@RequestParam Long index){
+    @GetMapping("/all/{id}")
+    public VideoCassette getByid(@PathVariable Long index){
         return videoCassettes.findById(index);
     }
     @PostMapping
