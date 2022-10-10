@@ -18,9 +18,8 @@ public class VideoACassetteService {
 
 
     public VideoCassette findById(Long id){
-        long l = id + 100;
         return videoAssettsRepository
-                .findById(l)
+                .findById(id)
                 .orElseThrow(()->new ArithmeticException("Bad"));
     }
     public Iterable<VideoCassette> findAll(){
