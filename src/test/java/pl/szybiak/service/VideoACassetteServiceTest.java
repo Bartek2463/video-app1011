@@ -14,10 +14,13 @@ import pl.szybiak.repository.VideoAssettsRepository;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 
 @ExtendWith(MockitoExtension.class)
 class VideoACassetteServiceTest {
@@ -35,13 +38,26 @@ class VideoACassetteServiceTest {
     @Test
     @DisplayName("Should get Id for One Videocassetts ")
     void shouldGetIdForOneVideocassets() {
-        Mockito.when(videoAssettsRepository.findById(VIDEO_CASETTE.getId())).thenReturn(Optional.of(VIDEO_CASETTE));
+        Mockito.when(videoAssettsRepository.findById(anyLong())).thenReturn(Optional.of(VIDEO_CASETTE));
         VideoCassette result = videoACassetteService.findById(3l);
 
         assertEquals(result,VIDEO_CASETTE);//junit
 
         Assertions.assertThat(result).isEqualTo(VIDEO_CASETTE); //assertJ
         Assertions.assertThat(result).isNotNull();
+    }
+    @Test
+    @DisplayName("Should Thrown Exception when Videocassets does not exists")
+    void shouldThrownExceptionWhenVideocassetsDoesNotExists(){
+        //given
+        Mockito.when(videoAssettsRepository.findById(anyLong())).thenReturn(Optional.empty());
+        //when $then
+        //junit
+        assertThrows(NoSuchElementException.class,()->videoACassetteService.findById(1l));
+
+        Assertions.assertThatThrownBy(()->videoACassetteService.findById(1l))
+                .isInstanceOf(NoSuchElementException.class);
+
     }
     @Test
     @DisplayName("Should get List Videocassets ")
@@ -61,14 +77,6 @@ class VideoACassetteServiceTest {
         Assertions.assertThat(save).isEqualTo(VIDEO_CASETTE);
     }
 
-    @Test
-    void deleteById() {
-
-    }
-
-    @Test
-    void fillDB() {
-    }
 
     private List<VideoCassette> videoCassetteList() {
         List<VideoCassette> videoCassettes = new ArrayList<>();

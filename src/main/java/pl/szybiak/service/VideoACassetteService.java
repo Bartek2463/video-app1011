@@ -8,6 +8,7 @@ import pl.szybiak.model.VideoCassette;
 import pl.szybiak.repository.VideoAssettsRepository;
 
 import java.time.LocalDate;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -20,7 +21,7 @@ public class VideoACassetteService {
     public VideoCassette findById(Long id){
         return videoAssettsRepository
                 .findById(id)
-                .orElseThrow(()->new ArithmeticException("Bad"));
+                .orElseThrow(()->new NoSuchElementException("Bad"));
     }
     public Iterable<VideoCassette> findAll(){
         return videoAssettsRepository.findAll();
