@@ -22,7 +22,7 @@ class VideoACassetteServiceTest {
 
     @Test
     void findById() {
-        System.out.println();
+
     }
 
     @Test
