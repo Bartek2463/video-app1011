@@ -17,8 +17,11 @@ public class VideoACassetteService {
     private VideoAssettsRepository videoAssettsRepository;
 
 
-    public Optional<VideoCassette> findById(Long id){
-        return videoAssettsRepository.findById(id);
+    public VideoCassette findById(Long id){
+
+        return videoAssettsRepository
+                .findById(id)
+                .orElseThrow(()->new ArithmeticException("Bad"));
     }
     public Iterable<VideoCassette> findAll(){
         return videoAssettsRepository.findAll();
