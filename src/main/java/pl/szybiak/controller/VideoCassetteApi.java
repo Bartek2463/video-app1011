@@ -24,7 +24,7 @@ public class VideoCassetteApi {
         return videoCassettes.findAll();
     }
     @GetMapping
-    public Optional<VideoCassette> getByid(@RequestParam Long index){
+    public VideoCassette getByid(@RequestParam Long index){
         return videoCassettes.findById(index);
     }
     @PostMapping
