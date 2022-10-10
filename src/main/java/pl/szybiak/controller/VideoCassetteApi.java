@@ -17,6 +17,10 @@ public class VideoCassetteApi {
 
     @GetMapping("/all")
     public Iterable<VideoCassette>  getAll(){
+
+
+
+
         return videoCassettes.findAll();
     }
     @GetMapping
